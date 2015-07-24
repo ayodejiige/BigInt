@@ -1,2 +1,2 @@
-# Projects
-Just things I try out from time to time
+# Big Integer
+A large integer class to hold integers greater than 32 bits
