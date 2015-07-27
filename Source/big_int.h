@@ -34,7 +34,7 @@ class BigInt {
   // BigInt operator %(const BigInt& rvalue);
 
   BigInt operator+=(const BigInt& rvalue);
-  // void operator -=(const BigInt& rvalue);
+  BigInt operator -=(const BigInt& rvalue);
   // void operator *=(const BigInt& rvalue);
   // void operator /=(const BigInt& rvalue);
 

@@ -23,14 +23,14 @@ BigInt::BigInt(int val) {
   } else {
     signed_ = false;
   }
-  while (temp != 0) {
+  do {
     data_.push_back(temp % 10);
     size_++;
     temp = temp / 10;
-  }
+  } while (temp != 0);
 
-  //std::cout << "Just created : " << val << std::endl;
-  //std::cout << "Signed is : " << signed_ << std::endl;
+  // std::cout << "Just created : " << val << std::endl;
+  // std::cout << "Signed is : " << signed_ << std::endl;
 }
 
 BigInt::~BigInt() { data_.clear(); }
@@ -82,7 +82,7 @@ BigInt BigInt::operator+(const BigInt& rvalue) const {
   } else if (this->signed_ && !rvalue.signed_) {
     // const BigInt copy = *this;
     // BigInt rval = rvalue;
-    //std::cout << "doing rvalue - this" << std::endl;
+    // std::cout << "doing rvalue - this" << std::endl;
     return rvalue - switch_sign(*this);
   }
 
@@ -124,6 +124,10 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
     return -1;
   }
 
+  if (rvalue == *this) {
+    return BigInt(0);
+  } //need to do this much better
+
   if (rvalue > *this) {
     return switch_sign(rvalue - (*this));
   }
@@ -140,10 +144,10 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
 
   for (int i = 0; i < n; i++) {
     if (subtrahend.size() < i + 1) {
-      //std::cout << minuend[i] << '-' << borrow << std::endl;
+      // std::cout << minuend[i] << '-' << borrow << std::endl;
       diff = minuend[i] - borrow;
     } else {
-      //std::cout << minuend[i] << '-' << subtrahend[i] << '-' << borrow
+      // std::cout << minuend[i] << '-' << subtrahend[i] << '-' << borrow
       //          << std::endl;
       diff = minuend[i] - subtrahend[i] - borrow;
     }
@@ -160,13 +164,12 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
   }
 
   // Need to do this more efficiently
-  for (int i = temp.size_-1; i>=0; i--){
-    //std::cout<<temp<<std::endl;
-    if (temp.data_[i]==0){
+  for (int i = temp.size_ - 1; i >= 0; i--) {
+    // std::cout<<temp<<std::endl;
+    if (temp.data_[i] == 0) {
       temp.data_.pop_back();
       temp.size_--;
-    }
-    else {
+    } else {
       break;
     }
   }
@@ -175,8 +178,14 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
 }
 
 BigInt BigInt::operator+=(const BigInt& rvalue) {
-  //std::cout << "adding em up big!!!" << std::endl;
+  // std::cout << "adding em up big!!!" << std::endl;
   *this = *this + rvalue;
+  return *this;
+}
+
+BigInt BigInt::operator-=(const BigInt& rvalue) {
+  // std::cout << "adding em up big!!!" << std::endl;
+  *this = *this - rvalue;
   return *this;
 }
 
@@ -204,12 +213,12 @@ bool BigInt::operator!=(const BigInt& rvalue) const {
 }
 
 bool BigInt::operator>(const BigInt& rvalue) const {
-  //std::cout << "comparing " << *this << " > " << rvalue << std::endl;
+  // std::cout << "comparing " << *this << " > " << rvalue << std::endl;
   if (this->signed_ == true && rvalue.signed_ == false) {
-    //std::cout<<"Comparing negative to positive"<<std::endl;
+    // std::cout<<"Comparing negative to positive"<<std::endl;
     return false;
   } else if (this->signed_ == false && rvalue.signed_ == true) {
-    //std::cout<<"Comparing positive to negative"<<std::endl;
+    // std::cout<<"Comparing positive to negative"<<std::endl;
     return true;
   } else if (this->signed_ == true && rvalue.signed_ == true) {
     return switch_sign(rvalue) > switch_sign(*this);
@@ -233,7 +242,7 @@ bool BigInt::operator>(const BigInt& rvalue) const {
 }
 
 bool BigInt::operator<(const BigInt& rvalue) const {
-  //std::cout << "comparing " << *this << " < " << rvalue << std::endl;
+  // std::cout << "comparing " << *this << " < " << rvalue << std::endl;
   return rvalue > *this;
 }
 
