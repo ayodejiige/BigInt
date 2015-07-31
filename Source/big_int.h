@@ -34,7 +34,7 @@ class BigInt {
   // BigInt operator %(const BigInt& rvalue);
 
   BigInt operator+=(const BigInt& rvalue);
-  BigInt operator -=(const BigInt& rvalue);
+  BigInt operator-=(const BigInt& rvalue);
   // void operator *=(const BigInt& rvalue);
   // void operator /=(const BigInt& rvalue);
 
@@ -47,7 +47,7 @@ class BigInt {
   bool operator>(const BigInt& rvalue) const;
 
   // I/O operators
-  friend std::istream& operator>>(std::istream& in, const BigInt& rvalue);
+  friend std::istream& operator>>(std::istream& in, BigInt& rvalue);
   friend std::ostream& operator<<(std::ostream& out, const BigInt& rvalue);
 
  private:

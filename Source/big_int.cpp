@@ -74,14 +74,12 @@ BigInt BigInt::operator=(const int& rvalue) {
 BigInt BigInt::operator+(const BigInt& rvalue) const {
   if (rvalue.size_ == 0 || this->size_ == 0) {
     std::cerr << "Empty big integer has been passed" << std::endl;
-    abort();
+    exit(EXIT_FAILURE);
   }
 
   if (rvalue.signed_ && !this->signed_) {
     return (*this) - rvalue;
   } else if (this->signed_ && !rvalue.signed_) {
-    // const BigInt copy = *this;
-    // BigInt rval = rvalue;
     // std::cout << "doing rvalue - this" << std::endl;
     return rvalue - switch_sign(*this);
   }
@@ -121,18 +119,19 @@ BigInt BigInt::operator+(const BigInt& rvalue) const {
 BigInt BigInt::operator-(const BigInt& rvalue) const {
   if (rvalue.size_ == 0 || this->size_ == 0) {
     std::cerr << "Empty big integer has been passed" << std::endl;
-    return -1;
+    exit(EXIT_FAILURE);
   }
 
   if (rvalue == *this) {
     return BigInt(0);
-  } //need to do this much better
+  }  // need to do this much better
 
   if (rvalue > *this) {
     return switch_sign(rvalue - (*this));
   }
+
   if (rvalue.signed_ && !this->signed_) {
-    return *this + rvalue;
+    return *this + switch_sign(rvalue);
   } else if (this->signed_ && !rvalue.signed_) {
     return rvalue + switch_sign(*this);
   }
@@ -148,7 +147,7 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
       diff = minuend[i] - borrow;
     } else {
       // std::cout << minuend[i] << '-' << subtrahend[i] << '-' << borrow
-      //          << std::endl;
+      // << std::endl;
       diff = minuend[i] - subtrahend[i] - borrow;
     }
 
@@ -184,7 +183,7 @@ BigInt BigInt::operator+=(const BigInt& rvalue) {
 }
 
 BigInt BigInt::operator-=(const BigInt& rvalue) {
-  // std::cout << "adding em up big!!!" << std::endl;
+  // std::cout << "subtracting em up big!!!" << std::endl;
   *this = *this - rvalue;
   return *this;
 }
@@ -246,11 +245,18 @@ bool BigInt::operator<(const BigInt& rvalue) const {
   return rvalue > *this;
 }
 
-std::istream& operator>>(std::istream& in, const BigInt& rvalue) {
+std::istream& operator>>(std::istream& in, BigInt& rvalue) {
+  int temp;
+  in >> temp;
+  rvalue = temp;
   return in;
-}  // need to implement properly
+}
 
 std::ostream& operator<<(std::ostream& out, const BigInt& rvalue) {
+  if (rvalue.size_ == 0) {
+    std::cerr << "Empty big integer has been passed" << std::endl;
+    exit(EXIT_FAILURE);
+  }
   if (rvalue.signed_) out << '-';
 
   for (int i = rvalue.size_ - 1; i >= 0; i--) {
