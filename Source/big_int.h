@@ -29,15 +29,15 @@ class BigInt {
   // Basic arithmetic operators
   BigInt operator+(const BigInt& rvalue) const;
   BigInt operator-(const BigInt& rvalue) const;
-  // BigInt operator *(const BigInt& rvalue);
-  // BigInt operator /(const BigInt& rvalue);
-  // BigInt operator %(const BigInt& rvalue);
+  BigInt operator*(const BigInt& rvalue);
+  BigInt operator/(const BigInt& rvalue);
+  BigInt operator%(const BigInt& rvalue);
 
   BigInt operator+=(const BigInt& rvalue);
   BigInt operator-=(const BigInt& rvalue);
-  // void operator *=(const BigInt& rvalue);
-  // void operator /=(const BigInt& rvalue);
-
+  BigInt operator*=(const BigInt& rvalue);
+  BigInt operator/=(const BigInt& rvalue);
+   
   // Boolean operators
   bool operator==(const BigInt& rvalue) const;
   bool operator!=(const BigInt& rvalue) const;

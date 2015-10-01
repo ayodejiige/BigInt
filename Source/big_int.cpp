@@ -181,7 +181,6 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
 
 	// Need to do this more efficiently
 	for (int i = temp.size_ - 1; i >= 0; i--) {
-		// std::cout<<temp<<std::endl;
 		if (temp.data_[i] == 0) {
 			temp.data_.pop_back();
 			temp.size_--;
@@ -192,6 +191,19 @@ BigInt BigInt::operator-(const BigInt& rvalue) const {
 	}
 
 	return temp;
+}
+
+BigInt BigInt::operator*(const BigInt& rvalue) {
+	// not yet implemented
+	return 0;
+}
+BigInt BigInt::operator/(const BigInt& rvalue) {
+	// not yet implemented
+	return 0;
+}
+BigInt BigInt::operator%(const BigInt& rvalue) {
+	// not yet implemented
+	return 0;
 }
 
 BigInt BigInt::operator+=(const BigInt& rvalue) {
@@ -208,6 +220,16 @@ BigInt BigInt::operator-=(const BigInt& rvalue) {
 #endif
 	*this = *this - rvalue;
 	return *this;
+}
+
+BigInt BigInt::operator*=(const BigInt& rvalue) {
+	// Not yet implemented
+	return 0;
+}
+
+BigInt BigInt::operator/=(const BigInt& rvalue) {
+	// Not yet implemented
+	return 0;
 }
 
 bool BigInt::operator==(const BigInt& rvalue) const {
