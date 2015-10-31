@@ -2,11 +2,10 @@
 
 #include <iostream>
 
-// Needs to follow google style standards
 // Need to add error checking
-// Need to implement for negative rvaluebers
-// Need to enable interaction with normal ints
-// Need to add edge cases
+// Use try and catch for error handling
+// have different cases for errors
+// try conversion to string to input into array
 
 BigInt::BigInt() {
   size_ = 0;
@@ -32,6 +31,7 @@ BigInt::BigInt(int val) {
   // std::cout << "Just created : " << val << std::endl;
   // std::cout << "Signed is : " << signed_ << std::endl;
 }
+
 
 BigInt::~BigInt() { data_.clear(); }
 

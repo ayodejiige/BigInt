@@ -9,12 +9,12 @@ int main() {
   BigInt empty;
 
   for (int i = 0; i < 50; i++) {
-    a += 5500;
+    a += 99999999;
     std::cout << a << std::endl;
   }
 
-  for (int i = 0; i < 100; i++) {
-    a -= 5500;
+  for (int i = 0; i < 200; i++) {
+    a -= 99999999;
     std::cout << a << std::endl;
   }
 
