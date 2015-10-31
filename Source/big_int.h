@@ -14,6 +14,7 @@ class BigInt {
   BigInt();
   // Constructor creates big integer from integer given
   BigInt(int val);
+  BigInt(char * val);
   // Destructor
   ~BigInt();
   // Copy Constructor
@@ -23,43 +24,43 @@ class BigInt {
   unsigned int size() const;
 
   // Assignment operator
-  BigInt operator=(const BigInt& rvalue);
-  BigInt operator=(const int& rvalue);
+  BigInt operator=(const BigInt& rhs);
+  BigInt operator=(const int& rhs);
 
   // Basic arithmetic operators
-  BigInt operator+(const BigInt& rvalue) const;
-  BigInt operator-(const BigInt& rvalue) const;
-  // BigInt operator *(const BigInt& rvalue);
-  // BigInt operator /(const BigInt& rvalue);
-  // BigInt operator %(const BigInt& rvalue);
+  BigInt operator+(const BigInt& rhs) const;
+  BigInt operator-(const BigInt& rhs) const;
+  // BigInt operator *(const BigInt& rhs);
+  // BigInt operator /(const BigInt& rhs);
+  // BigInt operator %(const BigInt& rhs);
 
-  BigInt operator+=(const BigInt& rvalue);
-  BigInt operator-=(const BigInt& rvalue);
-  // void operator *=(const BigInt& rvalue);
-  // void operator /=(const BigInt& rvalue);
+  BigInt operator+=(const BigInt& rhs);
+  BigInt operator-=(const BigInt& rhs);
+  // void operator *=(const BigInt& rhs);
+  // void operator /=(const BigInt& rhs);
 
   // Boolean operators
-  bool operator==(const BigInt& rvalue) const;
-  bool operator!=(const BigInt& rvalue) const;
-  bool operator<=(const BigInt& rvalue) const;
-  bool operator>=(const BigInt& rvalue) const;
-  bool operator<(const BigInt& rvalue) const;
-  bool operator>(const BigInt& rvalue) const;
+  bool operator==(const BigInt& rhs) const;
+  bool operator!=(const BigInt& rhs) const;
+  bool operator<=(const BigInt& rhs) const;
+  bool operator>=(const BigInt& rhs) const;
+  bool operator<(const BigInt& rhs) const;
+  bool operator>(const BigInt& rhs) const;
 
   // I/O operators
-  friend std::istream& operator>>(std::istream& in, BigInt& rvalue);
-  friend std::ostream& operator<<(std::ostream& out, const BigInt& rvalue);
+  friend std::istream& operator>>(std::istream& in, BigInt& rhs);
+  friend std::ostream& operator<<(std::ostream& out, const BigInt& rhs);
 
  private:
   // Member variable
 
   // Represention of big integer as a vector of numbers
-  std::vector<int> data_;
+  mutable char* data_;
   // Current number of digits in big integer
   unsigned int size_;
   // True if big integer is negative
   bool signed_;
-  // BigInt max (const BigInt &rvalue, const BigInt &rvalue);
+  // BigInt max (const BigInt &rhs, const BigInt &rhs);
 
   // Helper functions
   BigInt switch_sign(BigInt value) const;
