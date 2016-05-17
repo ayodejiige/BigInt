@@ -23,7 +23,7 @@ BigInt::BigInt(int val) {
     signed_ = false;
   }
   do {
-    data_.push_back((char)temp % 10);
+    data_.push_back(temp % 10);
     size_++;
     temp = temp / 10;
   } while (temp != 0);
@@ -32,9 +32,9 @@ BigInt::BigInt(int val) {
   // std::cout << "Signed is : " << signed_ << std::endl;
 }
 
-BigInt::BigInt() {
+// BigInt::BigInt() {
 
-}
+// }
 
 BigInt::~BigInt() { data_.clear(); }
 

@@ -55,7 +55,8 @@ class BigInt {
   // Member variable
 
   // Represention of big integer as a vector of numbers
-  mutable char* data_;
+  // mutable char* data_;
+  std::vector<int> data_;
   // Current number of digits in big integer
   unsigned int size_;
   // True if big integer is negative
