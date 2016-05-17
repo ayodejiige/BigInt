@@ -1,14 +1,7 @@
 *.o
 *.out
 *.gch
-.vs/
-*.opensdf
-*.sdf
-*.sln
-*.vcxproj
-*.filters
-*Debug/
-
+*.exe
 
 
 
